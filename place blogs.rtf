@@ -1,0 +1,135 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red49\green49\blue49;\red125\green20\blue19;
+\red135\green135\blue135;\red38\green38\blue38;\red197\green36\blue62;}
+\margl1440\margr1440\vieww10200\viewh12460\viewkind0
+\deftab720
+\pard\pardeftab720\sa260
+
+\f0\fs26 \cf2 Let's analyze two regions and then compare them. So upper midwest (SD, ND, MN, WI, MI) and appalachia (KY, TN, WV)\
+ND:\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://veederranch.com/"}}{\fldrslt \cf2 http://veederranch.com/}}\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://autobiographyofsteve.blogspot.com/"}}{\fldrslt \cf2 http://autobiographyofsteve.blogspot.com/}}\
+\
+SD:\
+ {\field{\*\fldinst{HYPERLINK "http://cowgirlimagery.blogspot.com/"}}{\fldrslt \cf2 http://cowgirlimagery.blogspot.com/}}\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://tiarasandtrucks.blogspot.com/"}}{\fldrslt \cf2 http://tiarasandtrucks.blogspot.com/}}\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://thesimplecountrylife.com/"}}{\fldrslt \cf2 http://thesimplecountrylife.com/}}\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://www.sarahmcow.com/"}}{\fldrslt \cf2 http://www.sarahmcow.com/}} (born in SD, but grew up all over, so not sure best fit)\
+\pard\pardeftab720\sa260
+{\field{\*\fldinst{HYPERLINK "http://toomutchforwords.com/"}}{\fldrslt \cf2 http://toomutchforwords.com}}\
+{\field{\*\fldinst{HYPERLINK "http://actim.wordpress.com/"}}{\fldrslt \cf2 http://actim.wordpress.com/}}\
+{\field{\*\fldinst{HYPERLINK "http://ifwordscouldsaveyou.wordpress.com/"}}{\fldrslt \cf2 http://ifwordscouldsaveyou.wordpress.com/}}\
+\
+MN: \
+{\field{\*\fldinst{HYPERLINK "http://themommyhoodproject.com/"}}{\fldrslt \cf2 http://themommyhoodproject.com/}}\
+{\field{\*\fldinst{HYPERLINK "http://stickyfeathers.typepad.com/"}}{\fldrslt \cf2 http://stickyfeathers.typepad.com/}}\
+\
+\
+Research\
+{\field{\*\fldinst{HYPERLINK "http://robertspage.com/dialects.html"}}{\fldrslt \cf2 http://robertspage.com/dialects.html}}\
+{\field{\*\fldinst{HYPERLINK "http://www4.ncsu.edu/~jakatz2/files/dialectposter.png"}}{\fldrslt \cf2 http://www4.ncsu.edu/~jakatz2/files/dialectposter.png}}\
+\
+\
+\
+for later: Dayton, Ohio: {\field{\*\fldinst{HYPERLINK "http://ohioonpurpose.blogspot.com/"}}{\fldrslt \cf2 http://ohioonpurpose.blogspot.com}}\
+Alabama: {\field{\*\fldinst{HYPERLINK "http://tothemoonandbackagain.wordpress.com/"}}{\fldrslt \cf2 http://tothemoonandbackagain.wordpress.com/}}\
+Michigan: {\field{\*\fldinst{HYPERLINK "http://lapstrake.blogspot.ca/"}}{\fldrslt \cf2 http://lapstrake.blogspot.ca/}}\
+\
+Spiders\
+1. fetch the data\
+	find endpoint\
+	send http requests to server\
+	user requests library\
+2.process the data\
+	use beautiful soup for parsing, not regex\
+3. export the data\
+ in scrapy, define model t store items, create spider to extract items, write a pipeline to store them\
+\
+XPath expressoins:\
+bookstore: selects all nodes with name bookstore\
+/bookstore: selects root element bookstore\
+bookstore/book: selects all book elements that are children of bookstore\
+//book: selects all book elements no matter where they are in the document\
+bookstore//book: selects all book elements that are descant of the bookstore element, no matter where they are under the bookstore element\
+//@lang: selects all attributes that are named "lang"\
+/bookstore/book[1]: selects the first book element that is the child of the bookstore element\
+/bookstore/book[last()]: selects the last book element that is the child of the bookstore element\
+/bookstore/book[last()-1]: selects the last but one book element that is the child of the bookstore element\
+/bookstore/book[position()<3]: selects the first two book elements that are children of the bookstore element\
+//title[@lang]: selects all title elements that have an attribute lang\
+//title[@lang='eng']: selects all title elements that have an attribute lang w/ value "eng'\
+/bookstore/book[price> 35.00] : selects all book elements of the bookstore element that have a price element greater than 35\
+/bookstore/book[price> 35.00]/title: selects all the title elements of the book elements of the bookstore element that have a price element with a value greater than 35\
+//bookstore/*: selects all child nodes of bookstore element\
+//*: selects all eleements \
+//title[@*]: selects all title elements w/ any attribute\
+//category[@term*]\
+//title[@type='text']\
+//content [@type='html']\
+first thing: element, second thing: attribute, third thing: attribute definition\
+title: element text:attribute or is it title: attribute, text: attribute definition\
+/html/head/title: selects the <title> element inside the <head> element of a html doc\
+/html/head/title/text(): selects text inside the title element\
+//td: selects all the td elements\
+//div[@class="mine"]: selects all the div elements which contain an attribute class="mine"\
+XPath tutorial: {\field{\*\fldinst{HYPERLINK "http://www.w3schools.com/XPath/default.asp"}}{\fldrslt \cf2 http://www.w3schools.com/XPath/default.asp}}\
+for working with XPaths, Scrapy provides a Selector class, instantiated with a HtmlResponse or XMLResponse object\
+Four basic selector methods:\
+xpath(): returns a list of selectors representing the nodes selected by the path expression given as argument\
+css(): same as path but for w/ css expression\
+extract(): unicode string with selected data\
+re(): unicode strings extracted by applying the regex given as arg\
+Can use selectors in the Scrapy shell, which requires IPython\
+after shell loads, you will have response fetched in local response variable. Type response.body or response.headers\
+also comes with a selector for this response, sel. Eg: sel.xpath('//title')\
+\
+How to extract the data:\
+1. look at the raw HTML (using firebug or similar) to figure out which element stores the information you're interested in\
+2. select this element with xpath, e.g.: sel.xpath('//ul/li').extract()\
+you can concatenate xpath calls to dig deeper into a node. You want to use the item dicts, e.g.:\
+\pard\pardeftab720\sl360
+
+\f1\fs24 \cf3  def \cf4 parse\cf3 (\cf5 self\cf3 , \cf6 response\cf3 ):\
+       \cf6 sel\cf3  = \cf6 Selector\cf3 (\cf6 response\cf3 )\
+       \cf6 sites\cf3  = \cf6 sel\cf3 .\cf6 xpath\cf3 (\cf7 '//ul/li'\cf3 )\
+       \cf6 items\cf3  = []\
+       for \cf6 site\cf3  in \cf6 sites\cf3 :\
+           \cf6 item\cf3  = \cf6 DmozItem\cf3 ()\
+           \cf6 item\cf3 [\cf7 'title'\cf3 ] = \cf6 site\cf3 .\cf6 xpath\cf3 (\cf7 'a/text()'\cf3 ).\cf6 extract\cf3 ()\
+           \cf6 item\cf3 [\cf7 'link'\cf3 ] = \cf6 site\cf3 .\cf6 xpath\cf3 (\cf7 'a/@href'\cf3 ).\cf6 extract\cf3 ()\
+           \cf6 item\cf3 [\cf7 'desc'\cf3 ] = \cf6 site\cf3 .\cf6 xpath\cf3 (\cf7 'text()'\cf3 ).\cf6 extract\cf3 ()\
+           \cf6 items\cf3 .\cf6 append\cf3 (\cf6 item\cf3 )\
+       return \cf6 items\cf3 \
+ \
+\pard\pardeftab720\sa260
+
+\f0\fs26 \cf2 to create an item:\
+First declare it (using format above), e.g.:\
+class BlogPost(Item):\
+	title = Field()\
+	blog_post = Field()\
+then:\
+blog = BlogPost(title="Snow in Reno", blog_post="Was cold today, by golly!")\
+\
+to retrieve values from fields in an item:\
+blog['title']\
+or blog.get('title')\
+to access all populated values:\
+blog.keys()\
+\
+to store scraped data in json:\
+scrapy crawl dmoz -o items.json -t json
+\f1\fs24 \cf3 \
+
+\f0\fs26 \cf2 \
+\
+I want to capture:\
+title = Field()\
+body = Field()\
+link = Field()}
